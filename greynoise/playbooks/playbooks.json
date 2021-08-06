@@ -1,0 +1,423 @@
+{
+  "type": "workflow_collections",
+  "data": [
+    {
+      "@type": "WorkflowCollection",
+      "name": "Sample - GreyNoise - 2.0.0",
+      "description": "Sample playbooks for \"GreyNoise\" connector. If you are planning to use any of the sample playbooks in your environment, ensure that you clone those playbooks and move them to a different collection, since the sample playbook collection gets deleted during connector upgrade and delete.",
+      "visible": true,
+      "image": "/api/3/images/1ff61bdb-62de-4b9a-a724-e0ec17cd1d84",
+      "uuid": "d2162198-cc58-4c35-9761-5f5366696bd2",
+      "id": 20,
+      "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
+      "createDate": 1628088228,
+      "modifyUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
+      "modifyDate": 1628088228,
+      "recordTags": [],
+      "workflows": [
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Generate GreyNoise Record",
+          "aliasName": null,
+          "tag": null,
+          "description": "Generate a GreyNoise Record from a GNQL Query Response",
+          "isActive": true,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [
+            "record"
+          ],
+          "synchronous": false,
+          "lastModifyDate": 1628185616,
+          "collection": "/api/3/workflow_collections/d2162198-cc58-4c35-9761-5f5366696bd2",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/0bc6140b-da88-454c-b88c-801b6e675fe0",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "step_variables": {
+                  "input": {
+                    "params": []
+                  }
+                }
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62",
+              "uuid": "0bc6140b-da88-454c-b88c-801b6e675fe0",
+              "id": 354
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Create GreyNoise Alert",
+              "description": null,
+              "arguments": {
+                "for_each": {
+                  "item": "{{vars.input.params.record}}",
+                  "__bulk": true,
+                  "condition": "",
+                  "batch_size": 100
+                },
+                "resource": {
+                  "name": "GreyNoise Alert - IP ({{vars.item.ip}}) Detected Scanning the Internet",
+                  "status": {
+                    "id": 118,
+                    "@id": "/api/3/picklists/7de816ff-7140-4ee5-bd05-93ce22002146",
+                    "icon": null,
+                    "uuid": "7de816ff-7140-4ee5-bd05-93ce22002146",
+                    "@type": "Picklist",
+                    "color": null,
+                    "display": "Open",
+                    "@context": "/api/3/contexts/Picklist",
+                    "listName": "/api/3/picklist_names/33e964a9-d607-49f2-813c-7ce46141815a",
+                    "itemValue": "Open",
+                    "orderIndex": 1
+                  },
+                  "sourceIp": "{{vars.item.ip}}",
+                  "__replace": "",
+                  "sourceTool": "GreyNoise",
+                  "description": "#### A Monitored IP has been observed Scanning the Internet\n\n##### Details:\nIP: {{vars.item.ip}}\nFirst Seen: {{vars.item.first_seen}}\nLast Seen: {{vars.item.last_seen}}\nTags: {{vars.item.tags}}\nScan Data:\n{{vars.item.raw_data}}\n\n-----\nFull Response:\n```\n{{vars.item}}\n```",
+                  "ackSlaStatus": {
+                    "id": 7,
+                    "@id": "/api/3/picklists/090115d7-90fc-4dc6-97ca-27950fc30c1c",
+                    "icon": null,
+                    "uuid": "090115d7-90fc-4dc6-97ca-27950fc30c1c",
+                    "@type": "Picklist",
+                    "color": "#14b341",
+                    "display": "Met",
+                    "@context": "/api/3/contexts/Picklist",
+                    "listName": "/api/3/picklist_names/fe36a8f2-fcba-4221-b4ab-1081f596b153",
+                    "itemValue": "Met",
+                    "orderIndex": 0
+                  },
+                  "closureReason": {
+                    "id": 250,
+                    "@id": "/api/3/picklists/8590c81e-3307-4645-97f5-c3e1bec4e05a",
+                    "icon": null,
+                    "uuid": "8590c81e-3307-4645-97f5-c3e1bec4e05a",
+                    "@type": "Picklist",
+                    "color": null,
+                    "display": "Tasks Completed",
+                    "@context": "/api/3/contexts/Picklist",
+                    "listName": "/api/3/picklist_names/4ebacea1-88cd-4ea8-9dcc-385bea42cc59",
+                    "itemValue": "Tasks Completed",
+                    "orderIndex": 0
+                  },
+                  "respSlaStatus": {
+                    "id": 7,
+                    "@id": "/api/3/picklists/090115d7-90fc-4dc6-97ca-27950fc30c1c",
+                    "icon": null,
+                    "uuid": "090115d7-90fc-4dc6-97ca-27950fc30c1c",
+                    "@type": "Picklist",
+                    "color": "#14b341",
+                    "display": "Met",
+                    "@context": "/api/3/contexts/Picklist",
+                    "listName": "/api/3/picklist_names/fe36a8f2-fcba-4221-b4ab-1081f596b153",
+                    "itemValue": "Met",
+                    "orderIndex": 0
+                  },
+                  "escalatedtoincident": {
+                    "id": 31,
+                    "@id": "/api/3/picklists/2128a09c-153d-4db3-985d-de6be33deae5",
+                    "icon": null,
+                    "uuid": "2128a09c-153d-4db3-985d-de6be33deae5",
+                    "@type": "Picklist",
+                    "color": "#808080",
+                    "display": "No",
+                    "@context": "/api/3/contexts/Picklist",
+                    "listName": "/api/3/picklist_names/e131cc54-9ae4-43c9-b830-af6e331fe024",
+                    "itemValue": "No",
+                    "orderIndex": 1
+                  }
+                },
+                "_showJson": false,
+                "operation": "Overwrite",
+                "collection": "/api/3/alerts",
+                "__recommend": [],
+                "fieldOperation": {
+                  "recordTags": "Overwrite"
+                },
+                "step_variables": []
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/2597053c-e718-44b4-8394-4d40fe26d357",
+              "uuid": "56b4c792-b80f-416c-aff4-0de645194d28",
+              "id": 355
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> Create GreyNoise Alert",
+              "targetStep": "/api/3/workflow_steps/56b4c792-b80f-416c-aff4-0de645194d28",
+              "sourceStep": "/api/3/workflow_steps/0bc6140b-da88-454c-b88c-801b6e675fe0",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "95400667-3cdd-4c6b-966e-85675b44fc21"
+            }
+          ],
+          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+          "uuid": "0de1e945-d165-4622-b211-e277ac67a8c7",
+          "recordTags": [
+            "alerts",
+            "greynoise",
+            "fetch",
+            "create"
+          ],
+          "id": 107,
+          "createUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "createDate": 1628176281,
+          "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "modifyDate": 1628185625,
+          "owners": [],
+          "isPrivate": false
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Fetch Alerts from GreyNoise",
+          "aliasName": null,
+          "tag": null,
+          "description": "Fetch Alerts for Monitored CIDR Block from GreyNoise",
+          "isActive": true,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1628185561,
+          "collection": "/api/3/workflow_collections/d2162198-cc58-4c35-9761-5f5366696bd2",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/49c47ba8-7e73-4dfc-ab09-21a1f89723a1",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "step_variables": {
+                  "input": {
+                    "params": []
+                  }
+                }
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62",
+              "uuid": "49c47ba8-7e73-4dfc-ab09-21a1f89723a1",
+              "id": 316
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Run Query for Monitored CIDR Block",
+              "description": null,
+              "arguments": {
+                "name": "GreyNoise",
+                "config": "e2e1e0af-2b8d-4f59-9d96-b7b9250498f3",
+                "params": {
+                  "query": "171.7.221.0/16 spoofable:false last_seen:1d",
+                  "max_results": "15"
+                },
+                "version": "2.0.0",
+                "connector": "greynoise",
+                "operation": "gnql_query",
+                "operationTitle": "Perform a GreyNoise Query",
+                "pickFromTenant": false,
+                "step_variables": {
+                  "alert_list": "{{vars.result.data.data}}"
+                }
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "uuid": "7b6828bd-dd40-4889-8c54-f952b416f781",
+              "id": 302
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Create A Record",
+              "description": null,
+              "arguments": {
+                "arguments": {
+                  "record": "{{vars.alert_list}}"
+                },
+                "apply_async": false,
+                "step_variables": [],
+                "workflowReference": "/api/3/workflows/0de1e945-d165-4622-b211-e277ac67a8c7"
+              },
+              "status": null,
+              "top": "300",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+              "uuid": "95295355-659d-4050-88f6-376174e1668b",
+              "id": 356
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> Run Query for Monitored CIDR Block",
+              "targetStep": "/api/3/workflow_steps/7b6828bd-dd40-4889-8c54-f952b416f781",
+              "sourceStep": "/api/3/workflow_steps/49c47ba8-7e73-4dfc-ab09-21a1f89723a1",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "4bf4a85f-c61b-44c9-880a-6ed22ef1b48c"
+            },
+            {
+              "@type": "WorkflowRoute",
+              "name": "Run Query for Monitored CIDR Block -> Create A Record",
+              "targetStep": "/api/3/workflow_steps/95295355-659d-4050-88f6-376174e1668b",
+              "sourceStep": "/api/3/workflow_steps/7b6828bd-dd40-4889-8c54-f952b416f781",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "a022a1e0-4075-48d3-b08d-5beb0bd4e63d"
+            }
+          ],
+          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+          "uuid": "1a4a73f7-278e-4af3-984f-60a8fefa26c2",
+          "recordTags": [
+            "alerts",
+            "fetch",
+            "greynoise",
+            "threat-intelligence"
+          ],
+          "id": 85,
+          "createUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "createDate": 1628090843,
+          "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "modifyDate": 1628185570,
+          "owners": [],
+          "isPrivate": false
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "GreyNoise IP Full Lookup",
+          "aliasName": null,
+          "tag": null,
+          "description": "Query full details on a Routable IP address from GreyNoise",
+          "isActive": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1628090806,
+          "collection": "/api/3/workflow_collections/d2162198-cc58-4c35-9761-5f5366696bd2",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/f5cba69f-eb3e-40a3-9d7b-bbf2f564942b",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "GreyNoise Full IP Lookup",
+              "description": null,
+              "arguments": {
+                "name": "GreyNoise",
+                "config": "9923bada-b8d3-43b6-9e49-9e83484cbf11",
+                "params": {
+                  "ip_address": "66.249.64.49"
+                },
+                "version": "2.0.0",
+                "connector": "greynoise",
+                "operation": "lookup_ip_complete",
+                "operationTitle": "Lookup GreyNoise IP Information (Noise, RIOT, Tags)",
+                "pickFromTenant": false,
+                "step_variables": []
+              },
+              "status": null,
+              "top": "140",
+              "left": "280",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "uuid": "06762bdd-5364-4a07-8982-5bbf87dbdb7b",
+              "id": 300
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "bc9b6307-d437-4ac6-bd4d-8d1fbac1ac04",
+                "title": "Query Indicator on GreyNoise",
+                "resources": [
+                  "indicators",
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "_promptexpanded": true,
+                "displayConditions": {
+                  "alerts": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": []
+                  },
+                  "indicators": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": []
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": false,
+                "singleRecordExecution": true
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "uuid": "f5cba69f-eb3e-40a3-9d7b-bbf2f564942b",
+              "id": 299
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> GreyNoise Full IP Lookup",
+              "targetStep": "/api/3/workflow_steps/06762bdd-5364-4a07-8982-5bbf87dbdb7b",
+              "sourceStep": "/api/3/workflow_steps/f5cba69f-eb3e-40a3-9d7b-bbf2f564942b",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "40ebc709-660d-47a9-865e-e8a3f6881b71"
+            }
+          ],
+          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+          "uuid": "a847b508-3a7a-4c89-b9df-efe27005008a",
+          "recordTags": [
+            "greynoise",
+            "threat-intelligence",
+            "mass-internet scanning"
+          ],
+          "id": 84,
+          "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
+          "createDate": 1628088228,
+          "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "modifyDate": 1628090811,
+          "owners": [],
+          "isPrivate": false
+        }
+      ]
+    }
+  ],
+  "exported_tags": [
+    "alerts",
+    "greynoise",
+    "fetch",
+    "create",
+    "threat-intelligence",
+    "mass-internet scanning"
+  ]
+}
