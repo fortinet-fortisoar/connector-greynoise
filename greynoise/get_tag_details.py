@@ -16,7 +16,7 @@ def get_tag_details(config, params):
     api_type = config.get("api_type")
 
     if api_type == "community":
-        raise ConnectorError("This action is not support with Community API Key")
+        raise ConnectorError("This action is not supported with Community API Key")
     else:
         api_client = GreyNoise(api_key=api_key, integration_name=INTEGRATION_NAME)
         api_response = api_client.metadata()

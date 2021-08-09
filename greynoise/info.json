@@ -10,7 +10,7 @@
     "configuration": {
         "fields": [
             {
-                "title": "GreyNoise API Key Type",
+                "title": "API Key Type",
                 "type": "select",
                 "name": "api_type",
                 "required": true,
@@ -23,7 +23,7 @@
                 ]
             },
             {
-                "title": "GreyNoise API Key",
+                "title": "API Key",
                 "type": "password",
                 "name": "api_key",
                 "required": true,
@@ -219,14 +219,15 @@
                     "type": "text",
                     "name": "query",
                     "value": "",
-                    "description": "IP address to lookup in GreyNoise."
+                    "description": "Query to search in GreyNoise",
+                    "placeholder": "eg, actor:'A10 Networks'"
                 },
                 {
                     "title": "Max Results",
                     "required": true,
                     "editable": true,
                     "visible": true,
-                    "type": "text",
+                    "type": "numeric",
                     "name": "max_results",
                     "value": "",
                     "description": "Max number of results to return from query.  Default is 10."
@@ -254,7 +255,8 @@
                     "type": "text",
                     "name": "query",
                     "value": "",
-                    "description": "IP address to lookup in GreyNoise."
+                    "description": "Query to search in GreyNoise",
+                    "placeholder": "eg, actor:'A10 Networks'"
                 }
             ]
         },
