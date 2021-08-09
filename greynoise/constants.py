@@ -1,2 +1,2 @@
 LOGGER_NAME = "greynoise"
-INTEGRATION_NAME = "fortinet-fortisoar-integration-v1.0.0"
+INTEGRATION_NAME = "fortinet-fortisoar-integration-v2.0.0"
