@@ -1,0 +1,307 @@
+{
+    "name": "greynoise",
+    "version": "2.0.0",
+    "label": "GreyNoise",
+    "description": "GreyNoise provides information on devices observed mass-scanning the internet. This integration provides a set of actions to lookup IPs or query the GreyNoise API. For support or to report issues or enhancements, please contact support@greynoise.io.",
+    "publisher": "GreyNoise",
+    "icon_small_name": "gn_icon_normal_small.png",
+    "icon_large_name": "gn_icon_normal_small.png",
+    "category": "",
+    "configuration": {
+        "fields": [
+            {
+                "title": "API Key Type",
+                "type": "select",
+                "name": "api_type",
+                "required": true,
+                "visible": true,
+                "editable": true,
+                "value": "enterprise",
+                "options": [
+                    "enterprise",
+                    "community"
+                ]
+            },
+            {
+                "title": "API Key",
+                "type": "password",
+                "name": "api_key",
+                "required": true,
+                "visible": true,
+                "editable": true,
+                "value": null,
+                "tooltip": "GreyNoise API Key found at: https://www.greynoise.io/viz/account/"
+            }
+        ]
+    },
+    "operations": [
+        {
+            "operation": "lookup_ip_context",
+            "title": "Lookup GreyNoise IP Context Information",
+            "description": "Lookup up the provided IP in the GreyNoise Context API endpoint",
+            "enabled": true,
+            "category": "investigation",
+            "annotation": "ip_reputation",
+            "output_schema": {
+                "ip": "",
+                "seen": "",
+                "classification": "",
+                "first_seen": "",
+                "last_seen": "",
+                "actor": "",
+                "tags": "",
+                "spoofable": "",
+                "cve": "",
+                "vpn": "",
+                "vpn_service": "",
+                "metadata": "",
+                "raw_data": "",
+                "bot": ""
+            },
+            "parameters": [
+                {
+                    "title": "IP Address",
+                    "required": true,
+                    "editable": true,
+                    "visible": true,
+                    "type": "text",
+                    "name": "ip_address",
+                    "value": "",
+                    "description": "IP address to lookup in GreyNoise."
+                }
+            ]
+        },
+        {
+            "operation": "lookup_ip_complete",
+            "title": "Lookup GreyNoise IP Information (Noise, RIOT, Tags)",
+            "description": "Lookup up the provided IP in the GreyNoise Context and RIOT API endpoint and include expanded Tag Metadata",
+            "enabled": true,
+            "category": "investigation",
+            "annotation": "ip_reputation",
+            "output_schema": {
+                "ip": "",
+                "seen": "",
+                "classification": "",
+                "first_seen": "",
+                "last_seen": "",
+                "actor": "",
+                "tags": "",
+                "spoofable": "",
+                "cve": "",
+                "vpn": "",
+                "vpn_service": "",
+                "metadata": "",
+                "raw_data": "",
+                "bot": ""
+            },
+            "parameters": [
+                {
+                    "title": "IP Address",
+                    "required": true,
+                    "editable": true,
+                    "visible": true,
+                    "type": "text",
+                    "name": "ip_address",
+                    "value": "",
+                    "description": "IP address to lookup in GreyNoise."
+                }
+            ]
+        },
+        {
+            "operation": "lookup_ip_riot",
+            "title": "Lookup GreyNoise IP RIOT Information",
+            "description": "Lookup up the provided IP in the GreyNoise RIOT API endpoint",
+            "enabled": true,
+            "category": "investigation",
+            "annotation": "ip_reputation",
+            "output_schema": {
+                "ip": "",
+                "riot": "",
+                "category": "",
+                "name": "",
+                "description": "",
+                "explanation": "",
+                "last_updated": "",
+                "reference": "",
+                "trust_level": ""
+            },
+            "parameters": [
+                {
+                    "title": "IP Address",
+                    "required": true,
+                    "editable": true,
+                    "visible": true,
+                    "type": "text",
+                    "name": "ip_address",
+                    "value": "",
+                    "description": "IP address to lookup in GreyNoise."
+                }
+            ]
+        },
+        {
+            "operation": "lookup_ip_community",
+            "title": "Lookup GreyNoise IP Community Information",
+            "description": "Lookup up the provided IP in the GreyNoise Community API endpoint",
+            "enabled": true,
+            "category": "investigation",
+            "annotation": "ip_reputation",
+            "output_schema": {
+                "ip": "",
+                "noise": "",
+                "riot": "",
+                "classification": "",
+                "name": "",
+                "link": "",
+                "last_seen": "",
+                "message": ""
+            },
+            "parameters": [
+                {
+                    "title": "IP Address",
+                    "required": true,
+                    "editable": true,
+                    "visible": true,
+                    "type": "text",
+                    "name": "ip_address",
+                    "value": "",
+                    "description": "IP address to lookup in GreyNoise."
+                }
+            ]
+        },
+        {
+            "operation": "lookup_ip_quick",
+            "title": "Lookup GreyNoise IP Quick Information",
+            "description": "Lookup up the provided IP in the GreyNoise Quick API endpoint",
+            "enabled": true,
+            "category": "investigation",
+            "annotation": "ip_reputation",
+            "output_schema": {
+                "ip": "",
+                "code": "",
+                "code_message": "",
+                "riot": "",
+                "noise": ""
+            },
+            "parameters": [
+                {
+                    "title": "IP Address",
+                    "required": true,
+                    "editable": true,
+                    "visible": true,
+                    "type": "text",
+                    "name": "ip_address",
+                    "value": "",
+                    "description": "IP address to lookup in GreyNoise."
+                }
+            ]
+        },
+        {
+            "operation": "gnql_query",
+            "title": "GreyNoise GNQL Query",
+            "description": "Query the GreyNoise GNQL API endpoint",
+            "enabled": true,
+            "category": "investigation",
+            "annotation": "query",
+            "output_schema": {
+                "complete": "",
+                "scroll": "",
+                "query": "",
+                "count": "",
+                "message": "",
+                "data": ""
+            },
+            "parameters": [
+                {
+                    "title": "Query",
+                    "required": true,
+                    "editable": true,
+                    "visible": true,
+                    "type": "text",
+                    "name": "query",
+                    "value": "",
+                    "description": "Query to search in GreyNoise",
+                    "placeholder": "eg, actor:'A10 Networks'"
+                },
+                {
+                    "title": "Max Results",
+                    "required": true,
+                    "editable": true,
+                    "visible": true,
+                    "type": "numeric",
+                    "name": "max_results",
+                    "value": "",
+                    "description": "Max number of results to return from query.  Default is 10."
+                }
+            ]
+        },
+        {
+            "operation": "stats_query",
+            "title": "Stats Query",
+            "description": "Query the GreyNoise GNQL Stats API endpoint",
+            "enabled": true,
+            "category": "investigation",
+            "annotation": "query",
+            "output_schema": {
+                "query": "",
+                "count": "",
+                "stats": ""
+            },
+            "parameters": [
+                {
+                    "title": "Query",
+                    "required": true,
+                    "editable": true,
+                    "visible": true,
+                    "type": "text",
+                    "name": "query",
+                    "value": "",
+                    "description": "Query to search in GreyNoise",
+                    "placeholder": "eg, actor:'A10 Networks'"
+                }
+            ]
+        },
+        {
+            "operation": "get_all_tag_metadata",
+            "title": "Get All GreyNoise Tag Metadata",
+            "description": "Retrieve all GreyNoise Tag Metadata",
+            "enabled": true,
+            "category": "investigation",
+            "annotation": "query",
+            "output_schema": {
+                "metadata": "",
+                "vpn_services": ""
+            },
+            "parameters": []
+        },
+        {
+            "operation": "get_tag_details",
+            "title": "Get GreyNoise Tag Details",
+            "description": "Retrieve details on a specific GreyNoise Tag",
+            "enabled": true,
+            "category": "investigation",
+            "annotation": "query",
+            "output_schema": {
+                "name": "",
+                "category": "",
+                "intention": "",
+                "description": "",
+                "references": "",
+                "recommend_block": "",
+                "cves": ""
+            },
+            "parameters": [
+                {
+                    "title": "Tag Name",
+                    "required": true,
+                    "editable": true,
+                    "visible": true,
+                    "type": "text",
+                    "name": "tag_name",
+                    "value": "",
+                    "description": "Tag Name to get details for in GreyNoise."
+                }
+            ]
+        }
+    ],
+    "forked_from": false
+}
