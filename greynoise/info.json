@@ -6,6 +6,7 @@
     "publisher": "GreyNoise",
     "icon_small_name": "gn_icon_normal_small.png",
     "icon_large_name": "gn_icon_normal_small.png",
+    "help_online": "https://docs.fortinet.com/document/fortisoar/2.0.0/greynoise/146/greynoise-v2-0-0",
     "category": "",
     "configuration": {
         "fields": [
